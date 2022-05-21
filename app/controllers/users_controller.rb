@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @users = User.all
   end
 
   def show
@@ -12,6 +13,11 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user == current_user
+      render "edit"
+    else
+      redirect_to user_path
+    end
   end
 
   def update
