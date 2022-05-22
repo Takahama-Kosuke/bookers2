@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  def new
-  end
 
   def index
     @users = User.all
@@ -22,7 +20,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update
+    if @user.update(user_params)
       redirect_to user_path
     else
       render :edit
